@@ -120,6 +120,10 @@ document.querySelectorAll('.item-button').forEach(button => {
 
 // Submit button functionality
 document.getElementById('submit-button').addEventListener('click', () => {
+    if(mistakesRemaining <= 0) {
+        return;
+    }
+    
     // Clear the selectedItems array before repopulating it
     let selectedItems = [];
     let oneAway = false;
