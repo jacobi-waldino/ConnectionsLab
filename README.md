@@ -14,6 +14,6 @@ Play it [here](https://jacobi-waldino.github.io/ConnectionsLab/)!
 
 - Game Sharing via URLs
 
-- Playable Example Games
+- ~~Playable Example Games~~ ✅
 
 - W3C Web Standards Compliance
