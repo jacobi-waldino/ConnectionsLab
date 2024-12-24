@@ -1,0 +1,339 @@
+@font-face {
+    font-family: 'FakeNYTFontBold';
+    src: url('../fonts/gabriel_serif/Gabriel\ Serif\ Condensed\ Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FakeNYTFont';
+    src: url('/fonts/gabriel_serif/Gabriel Serif Condensed.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#homepage-link {
+    text-decoration: none;
+    color: black;
+}
+
+#homepage-link:hover {
+    text-decoration: none;
+    color: #861cab;
+}
+
+footer {
+    font-family: 'Arial';
+    font-weight: bold;
+    margin-top: 3%;
+    padding: 1.5%;
+    text-align: center;
+    border-top: black solid 1px;
+}
+
+footer a, footer a:hover, footer a:visited {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Makes the link take the color of its parent */
+}
+
+#landing-page-body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+#landing-page-container {
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    width: 60vw;
+    text-align: center;
+    align-items: center;
+}
+
+#button-grid-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 1fr;
+    gap: 20px;
+    width: 60vw;
+    text-align: center;
+    align-items: center;
+}
+
+#landing-page-container header .title{
+    font-family: 'FakeNYTFontBold', Arial, sans-serif;
+    font-size: 3.4rem;
+    margin: 0; /* Removes default margin */
+}
+
+#landing-page-container header .subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+#button-container .button{
+    padding: 10px 20px; /* Adjusts button padding */
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-family: Arial, sans-serif;
+    margin: 0; /* Removes default margin */
+    text-transform: uppercase;
+    
+}
+
+#button-container .button:hover, #creator-buttons-grid button:hover {
+    background-color: #861cab;
+}
+
+#button-container .button a, #button-container .button a:visited, #button-container .button a:hover {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Makes the link take the color of its parent */
+}
+
+.button-link {
+    padding: 10px 20px; /* Adjusts button padding */
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-family: Arial, sans-serif;
+    margin: 0; /* Removes default margin */
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.button-link:hover {
+    background-color: #861cab; /* Darker shade on hover */
+}
+
+.header {
+    border-bottom: black solid 1px;
+    margin-bottom: 2em;
+}
+
+.header h1 {
+    font-family: 'FakeNYTFontBold', Arial, sans-serif;
+    font-size: 3rem;
+    margin: 0; /* Removes default margin */
+}
+
+.header .subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+}
+
+#creator-explanation, #play-explanation {
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    color:gray;
+    text-align: center;
+    margin: 0px;
+    font-size: medium;
+}
+
+#creator-inner-body {
+    padding-bottom: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #f4f4f4; */
+    /* border: #861cab dotted 1px; */
+}
+
+#creator-grid-container {
+    display: grid;
+    margin: 2%;
+    gap: 10px;
+    grid-template-rows: 25% 25% 25% 25%;
+    text-align: center;
+    align-items: center;
+}
+
+.group-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    border-radius: 15px;
+}
+
+.group-grid-container > input,  .group-grid-container > input:focus{
+    margin-top: 1px;
+    text-align: center;
+    width: 100%;
+    border: 0px;
+    background-color: inherit;
+    font-family: Arial, sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0.1em;
+    border: none; /* Remove border when focused */
+    outline: none; /* Remove the default outline for a cleaner look */
+}
+
+input[type="text"] {
+    text-transform: uppercase;
+}
+
+.group-grid-container > input::placeholder{
+    color: black;
+}
+
+.connection-grid-container {
+    display: grid;
+    margin: 5%;
+    grid-template-columns: 100vw;
+    grid-template-rows: 20vh 20vh;
+}
+
+.inputs-grid-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto auto auto auto;
+}
+
+.inputs-grid-container input {
+    margin-top: 15px;
+    text-align: center;
+    border-radius: 10px;
+    border: 0pc;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.inputs-grid-container input {
+    text-align: center;
+}
+
+#row1 {
+    background-color: #f9df6d;
+}
+#row2 {
+    background-color: #a0c35a;
+}
+#row3 {
+    background-color:#b0c4ef;
+}
+#row4 {
+    background-color:#ba81c5;
+}
+
+#creator-buttons {
+    margin: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#creator-buttons-grid {
+    display: grid;
+    grid-template-columns: 10em 10em;
+    grid-template-rows: 1fr;
+    gap: 20px;
+    text-align: center;
+    align-items: center;
+}
+
+#creator-buttons-grid button {
+    padding: 10px 20px; /* Adjusts button padding */
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-family: Arial, sans-serif;
+    margin: 0; /* Removes default margin */
+    text-transform: uppercase;
+}
+
+#items-container {
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#items-grid-container {
+    overflow:visible;
+    display: grid;
+    grid-template-columns: repeat(4, 175px) ;
+    grid-template-rows: 4vh 4vh 4vh 4vh;
+    row-gap: 60px;
+    column-gap: 30px;
+    text-align: center;
+    align-items: center;
+}
+
+#items-grid-container button {
+    overflow: auto;
+    background-color: lightgray;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 0px;
+    font-size: 100%;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 30px 16px;
+    display: grid;
+    place-items: center;
+
+}
+
+/* Active (clicked) button styles */
+#items-grid-container button.item-button.active {
+    background-color: black;
+    color: white;
+}
+
+#play-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#group-names-container h3 {
+    font-family: Arial;
+    text-align: center;
+    font-weight: bold;
+    margin: 15px;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+}
+
+#play-buttons-container button {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: Arial;
+    padding: 1em;
+    border-radius: 25px;
+    border: 1px solid black;
+}
+
+#misses {
+    font-family: Arial, sans-serif;
+    color:gray;
+    text-align: center;
+    font-size: medium;
+    margin-top: 1em;
+}
