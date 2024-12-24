@@ -255,10 +255,10 @@ document.getElementById('submit-button').addEventListener('click', () => {
             document.getElementById('misses').textContent = document.getElementById('misses').textContent.slice(0, -2);
             mistakesRemaining--;
             
-            console.log(matchCount1);
-            console.log(matchCount2);
-            console.log(matchCount3);
-            console.log(matchCount4);
+            // console.log(matchCount1);
+            // console.log(matchCount2);
+            // console.log(matchCount3);
+            // console.log(matchCount4);
 
             if(mistakesRemaining == 0) {
                 document.getElementById('play-explanation').textContent = 'better luck next time';
