@@ -1,132 +1,108 @@
-// Attach an event listener to the Select CSV File button
-const selectFileButton = document.getElementById('select-file-button');
-const loadButton = document.getElementById('load-button');
-const playDemoButton = document.getElementById('play-demo-button');
+// Constants for configuration
+const CONFIG = {
+    REQUIRED_ROWS: 4,
+    REQUIRED_COLUMNS: 5,
+    DEMO_GAMES_COUNT: 4,
+    DEMO_GAMES_PATH: './demo-games/game',
+    PLAY_PAGE_PATH: './play.html'
+};
 
-selectFileButton.addEventListener('click', () => {
-    loadButton.click(); // Trigger the file input click event
-});
-
-// Attach an event listener to the Load button (file input)
-loadButton.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const csvData = e.target.result;
-
-            // // Debug: log the raw CSV data to check its structure
-            // console.log("Raw CSV Data:", csvData);
-
-            // Split by lines and clean up empty lines (which might be caused by extra newlines at the end)
-            const rows = csvData.trim().split(/\r?\n/).map(row => row.split(","));
-
-            // // Debug: log the rows to see the structure
-            // console.log("Parsed Rows:", rows);
-
-            // Ensure the CSV format has exactly 4 rows and 5 columns per row
-            if (rows.length === 4 && rows.every(row => row.length === 5)) {
-                // Create an object with the fields to store in localStorage
-                const fields = {
-                    group1: rows[0][0],
-                    item1_1: rows[0][1],
-                    item1_2: rows[0][2],
-                    item1_3: rows[0][3],
-                    item1_4: rows[0][4],
-                    
-                    group2: rows[1][0],
-                    item2_1: rows[1][1],
-                    item2_2: rows[1][2],
-                    item2_3: rows[1][3],
-                    item2_4: rows[1][4],
-                    
-                    group3: rows[2][0],
-                    item3_1: rows[2][1],
-                    item3_2: rows[2][2],
-                    item3_3: rows[2][3],
-                    item3_4: rows[2][4],
-                    
-                    group4: rows[3][0],
-                    item4_1: rows[3][1],
-                    item4_2: rows[3][2],
-                    item4_3: rows[3][3],
-                    item4_4: rows[3][4]
-                };
-
-                // Save the fields to localStorage
-                for (const [key, value] of Object.entries(fields)) {
-                    localStorage.setItem(key, value);
-                }
-
-                // Optionally redirect to play page
-                window.location.assign("./play.html");
-            } else {
-                alert('Invalid CSV format! Ensure there are 4 rows and 5 columns per row.');
-            }
-        };
-        
-        reader.readAsText(file);
+// Class to handle CSV loading and processing
+class GameDataLoader {
+    constructor() {
+        this.initializeEventListeners();
     }
-});
 
-playDemoButton.addEventListener('click', () => {
-    const randomNumber = Math.floor(Math.random() * 4) + 1;
-    const filePath = `./demo-games/game${randomNumber}.csv`;  // Dynamically create the file path
+    initializeEventListeners() {
+        const selectFileButton = document.getElementById('select-file-button');
+        const loadButton = document.getElementById('load-button');
+        const playDemoButton = document.getElementById('play-demo-button');
 
-    // Use fetch to load the file and process it
-    fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                alert('Demo file not found');
+        selectFileButton?.addEventListener('click', () => loadButton.click());
+        loadButton?.addEventListener('change', (event) => this.handleFileSelection(event));
+        playDemoButton?.addEventListener('click', () => this.loadRandomDemoGame());
+    }
+
+    validateCSVFormat(rows) {
+        return rows.length === CONFIG.REQUIRED_ROWS && 
+               rows.every(row => row.length === CONFIG.REQUIRED_COLUMNS);
+    }
+
+    parseCSVToFields(rows) {
+        const fields = {};
+        
+        for (let i = 0; i < CONFIG.REQUIRED_ROWS; i++) {
+            fields[`group${i + 1}`] = rows[i][0];
+            for (let j = 1; j < CONFIG.REQUIRED_COLUMNS; j++) {
+                fields[`item${i + 1}_${j}`] = rows[i][j];
             }
-            return response.text();
-        })
-        .then(csvData => {
-            // Split by lines and clean up empty lines (which might be caused by extra newlines at the end)
-            const rows = csvData.trim().split(/\r?\n/).map(row => row.split(","));
+        }
+        
+        return fields;
+    }
 
-            // // Debug: log the rows to see the structure
-            // console.log("Parsed Rows:", rows);
-
-            // Ensure the CSV format has exactly 4 rows and 5 columns per row
-            if (rows.length === 4 && rows.every(row => row.length === 5)) {
-                // Create an object with the fields to store in localStorage
-                const fields = {
-                    group1: rows[0][0],
-                    item1_1: rows[0][1],
-                    item1_2: rows[0][2],
-                    item1_3: rows[0][3],
-                    item1_4: rows[0][4],
-                    
-                    group2: rows[1][0],
-                    item2_1: rows[1][1],
-                    item2_2: rows[1][2],
-                    item2_3: rows[1][3],
-                    item2_4: rows[1][4],
-                    
-                    group3: rows[2][0],
-                    item3_1: rows[2][1],
-                    item3_2: rows[2][2],
-                    item3_3: rows[2][3],
-                    item3_4: rows[2][4],
-                    
-                    group4: rows[3][0],
-                    item4_1: rows[3][1],
-                    item4_2: rows[3][2],
-                    item4_3: rows[3][3],
-                    item4_4: rows[3][4]
-                };
-
-                // Save the fields to localStorage
-                for (const [key, value] of Object.entries(fields)) {
-                    localStorage.setItem(key, value);
-                }
-
-                // Optionally redirect to play page
-                window.location.assign("./play.html");
-            }})
-        .catch(error => {
-            console.error('Error loading the CSV file:', error);
+    saveToLocalStorage(fields) {
+        Object.entries(fields).forEach(([key, value]) => {
+            localStorage.setItem(key, value);
         });
+    }
+
+    redirectToPlayPage() {
+        window.location.assign(CONFIG.PLAY_PAGE_PATH);
+    }
+
+    processCSVData(csvData) {
+        const rows = csvData.trim().split(/\r?\n/).map(row => row.split(","));
+
+        if (!this.validateCSVFormat(rows)) {
+            throw new Error(`Invalid CSV format! Ensure there are ${CONFIG.REQUIRED_ROWS} rows and ${CONFIG.REQUIRED_COLUMNS} columns per row.`);
+        }
+
+        const fields = this.parseCSVToFields(rows);
+        this.saveToLocalStorage(fields);
+        this.redirectToPlayPage();
+    }
+
+    async handleFileSelection(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        try {
+            const csvData = await this.readFile(file);
+            this.processCSVData(csvData);
+        } catch (error) {
+            alert(error.message);
+            console.error('Error processing file:', error);
+        }
+    }
+
+    readFile(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = e => resolve(e.target.result);
+            reader.onerror = () => reject(new Error('Error reading file'));
+            reader.readAsText(file);
+        });
+    }
+
+    async loadRandomDemoGame() {
+        const randomNumber = Math.floor(Math.random() * CONFIG.DEMO_GAMES_COUNT) + 1;
+        const filePath = `${CONFIG.DEMO_GAMES_PATH}${randomNumber}.csv`;
+
+        try {
+            const response = await fetch(filePath);
+            if (!response.ok) throw new Error('Demo file not found');
+            
+            const csvData = await response.text();
+            this.processCSVData(csvData);
+        } catch (error) {
+            console.error('Error loading the CSV file:', error);
+            alert('Failed to load demo game');
+        }
+    }
+}
+
+// Initialize the loader when the DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    new GameDataLoader();
 });

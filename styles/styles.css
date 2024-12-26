@@ -299,7 +299,6 @@ input[type="text"] {
     padding: 30px 16px;
     display: grid;
     place-items: center;
-
 }
 
 /* Active (clicked) button styles */
