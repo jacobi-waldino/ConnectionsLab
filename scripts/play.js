@@ -16,6 +16,8 @@ function deselectAllButtons() {
 }
 
 document.getElementById('deselect-button').addEventListener('click', deselectAllButtons);
+document.getElementById('shuffle-button').addEventListener('click', shuffleButtons);
+
 
 // Object to track the state (toggled or not) of each button
 const buttonStates = {};
@@ -352,4 +354,74 @@ function loseSequence() {
                 solveGroup(group4Items, group4Name, '#ba81c5', 'group-4');
             }, timeout); // Start solving group 4 after 4 seconds
         }   
+}
+
+// Add this function to handle the shuffling
+function shuffleButtons() {
+    // Get all buttons
+    const buttons = Array.from(document.querySelectorAll('.item-button'));
+    
+    // Get all solved items (items in completed groups)
+    const solvedItems = [
+        ...(group1Completed ? group1Items : []),
+        ...(group2Completed ? group2Items : []),
+        ...(group3Completed ? group3Items : []),
+        ...(group4Completed ? group4Items : [])
+    ];
+
+    // Create a copy of the current button data
+    const buttonData = buttons.map(button => ({
+        id: button.id,
+        text: button.textContent,
+        isActive: button.classList.contains('active'),
+        isSolved: solvedItems.includes(button.textContent.trim()),
+        // Store the solved state colors if this is a solved button
+        backgroundColor: solvedItems.includes(button.textContent.trim()) ? button.style.backgroundColor : '',
+        color: solvedItems.includes(button.textContent.trim()) ? button.style.color : ''
+    }));
+
+    // Separate solved and unsolved buttons
+    const solvedButtons = buttonData.filter(data => data.isSolved);
+    const unsolvedButtons = buttonData.filter(data => !data.isSolved);
+    
+    // Only shuffle the unsolved buttons
+    for (let i = unsolvedButtons.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [unsolvedButtons[i], unsolvedButtons[j]] = [unsolvedButtons[j], unsolvedButtons[i]];
+    }
+
+    // Combine back solved and shuffled unsolved buttons
+    const shuffledData = [...solvedButtons, ...unsolvedButtons];
+    
+    // Update the randomizedOrder array
+    randomizedOrder = shuffledData.map(data => data.text);
+    
+    // Apply the shuffled data back to the buttons
+    buttons.forEach((button, index) => {
+        const data = shuffledData[index];
+        
+        // Update button content
+        button.textContent = data.text;
+        
+        // Reset button appearance first
+        button.classList.remove('active');
+        button.style.backgroundColor = '';
+        button.style.color = '';
+        button.disabled = false;
+        
+        // If this is a solved button, apply solved state
+        if (data.isSolved) {
+            button.style.backgroundColor = data.backgroundColor;
+            button.style.color = data.color;
+            button.disabled = true;
+        } else {
+            // If it's not solved but was active, maintain active state
+            if (data.isActive) {
+                button.classList.add('active');
+            }
+        }
+    });
+    
+    // Update localStorage with new randomized order
+    localStorage.setItem('randomizedOrder', JSON.stringify(randomizedOrder));
 }

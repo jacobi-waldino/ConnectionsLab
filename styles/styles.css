@@ -343,3 +343,138 @@ input[type="text"] {
 #github-link {
     text-align: center;
 }
+
+@media screen and (max-width: 768px) {
+    /* Landing page adjustments */
+    #landing-page-container {
+        width: 90vw;
+        padding: 1rem;
+    }
+
+    #button-grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+        gap: 15px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .button-link {
+        padding: 15px 10px;
+    }
+
+    /* Header adjustments */
+    .header h1 {
+        font-size: 2rem;
+        padding: 0 10px;
+    }
+
+    .header .subtitle {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+
+    /* Creator page adjustments */
+    #creator-grid-container {
+        margin: 1%;
+        gap: 5px;
+    }
+
+    .group-container {
+        padding: 0.5em;
+    }
+
+    .inputs-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 5px;
+    }
+
+    .inputs-grid-container input {
+        padding: 8px 5px;
+        font-size: 0.9rem;
+    }
+
+    #creator-buttons-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Play page adjustments */
+    #items-container {
+        margin: 20px 10px;
+    }
+
+    #items-grid-container {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 10px;
+        width: 100%;
+        max-width: 100vw;
+        padding: 0 10px;
+    }
+
+    #items-grid-container button {
+        padding: 20px 10px;
+        font-size: 90%;
+        width: 100%;
+        height: auto;
+        min-height: 60px;
+    }
+
+    #play-buttons-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #play-buttons-container button {
+        width: 80%;
+        margin: 5px 0;
+    }
+
+    /* Group names container adjustments */
+    #group-names-container h3 {
+        margin: 10px 5px;
+        font-size: 0.9rem;
+    }
+
+    /* Footer adjustments */
+    footer {
+        font-size: 0.8rem;
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+}
+
+/* Additional adjustments for very small screens */
+@media screen and (max-width: 320px) {
+    #items-grid-container button {
+        font-size: 80%;
+        padding: 15px 8px;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .header .subtitle {
+        font-size: 0.8rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    #items-grid-container button:hover,
+    .button-link:hover,
+    #creator-buttons-grid button:hover {
+        background-color: #007bff; /* Prevents hover state on touch devices */
+    }
+
+    #items-grid-container button:active,
+    .button-link:active,
+    #creator-buttons-grid button:active {
+        background-color: #861cab; /* Shows feedback on touch instead */
+    }
+}
