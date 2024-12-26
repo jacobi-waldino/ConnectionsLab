@@ -361,43 +361,64 @@ function shuffleButtons() {
     // Get all buttons
     const buttons = Array.from(document.querySelectorAll('.item-button'));
     
-    // Create a copy of the current button states and colors
+    // Get all solved items (items in completed groups)
+    const solvedItems = [
+        ...(group1Completed ? group1Items : []),
+        ...(group2Completed ? group2Items : []),
+        ...(group3Completed ? group3Items : []),
+        ...(group4Completed ? group4Items : [])
+    ];
+
+    // Create a copy of the current button data
     const buttonData = buttons.map(button => ({
         id: button.id,
         text: button.textContent,
         isActive: button.classList.contains('active'),
-        backgroundColor: button.style.backgroundColor,
-        color: button.style.color,
-        isDisabled: button.disabled
+        isSolved: solvedItems.includes(button.textContent.trim()),
+        // Store the solved state colors if this is a solved button
+        backgroundColor: solvedItems.includes(button.textContent.trim()) ? button.style.backgroundColor : '',
+        color: solvedItems.includes(button.textContent.trim()) ? button.style.color : ''
     }));
+
+    // Separate solved and unsolved buttons
+    const solvedButtons = buttonData.filter(data => data.isSolved);
+    const unsolvedButtons = buttonData.filter(data => !data.isSolved);
     
-    // Shuffle the button data
-    for (let i = buttonData.length - 1; i > 0; i--) {
+    // Only shuffle the unsolved buttons
+    for (let i = unsolvedButtons.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [buttonData[i], buttonData[j]] = [buttonData[j], buttonData[i]];
+        [unsolvedButtons[i], unsolvedButtons[j]] = [unsolvedButtons[j], unsolvedButtons[i]];
     }
+
+    // Combine back solved and shuffled unsolved buttons
+    const shuffledData = [...solvedButtons, ...unsolvedButtons];
     
-    // Update the randomizedOrder array to match the new shuffle
-    randomizedOrder = buttonData.map(data => data.text);
+    // Update the randomizedOrder array
+    randomizedOrder = shuffledData.map(data => data.text);
     
     // Apply the shuffled data back to the buttons
     buttons.forEach((button, index) => {
-        const data = buttonData[index];
+        const data = shuffledData[index];
         
-        // Update button content and states
+        // Update button content
         button.textContent = data.text;
         
         // Reset button appearance first
         button.classList.remove('active');
         button.style.backgroundColor = '';
         button.style.color = '';
+        button.disabled = false;
         
-        // Then apply the stored states
-        if (data.isActive) button.classList.add('active');
-        if (data.backgroundColor) {
+        // If this is a solved button, apply solved state
+        if (data.isSolved) {
             button.style.backgroundColor = data.backgroundColor;
             button.style.color = data.color;
-            button.disabled = data.isDisabled;
+            button.disabled = true;
+        } else {
+            // If it's not solved but was active, maintain active state
+            if (data.isActive) {
+                button.classList.add('active');
+            }
         }
     });
     
