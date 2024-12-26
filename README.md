@@ -8,9 +8,9 @@ Play it [here](https://jacobi-waldino.github.io/ConnectionsLab/)!
 
 ## Planned Features
 
-- Working Shuffle Button
+- ~~Working Shuffle Button~~ ✅
 
-- (Better) Mobile Device Support
+- ~~(Better) Mobile Device Support~~ ✅
 
 - Game Sharing via URLs
 
