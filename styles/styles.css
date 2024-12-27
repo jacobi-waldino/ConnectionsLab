@@ -421,6 +421,7 @@ input[type="text"] {
         width: 100%;
         height: auto;
         min-height: 60px;
+        font-size: small;
     }
 
     #play-buttons-container {
@@ -452,6 +453,7 @@ input[type="text"] {
     #items-grid-container button {
         font-size: 80%;
         padding: 15px 8px;
+        font-size: x-small;
     }
 
     .header h1 {
