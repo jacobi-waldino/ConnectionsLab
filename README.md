@@ -16,12 +16,11 @@ This is step one of implementing the feature of game sharing without uploading .
 
 ## Planned Features
 
+- Game Sharing via URLs/Codes
+  
 - ~~Working Shuffle Button~~ ✅
 
 - ~~(Better) Mobile Device Support~~ ✅
 
-- Game Sharing via URLs
-
 - ~~Playable Example Games~~ ✅
 
-- W3C Web Standards Compliance
