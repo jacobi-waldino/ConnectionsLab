@@ -16,6 +16,8 @@ This is step one of implementing the feature of game sharing without uploading .
 
 ## Planned Features
 
+- Make an icon
+
 - Game Sharing via URLs/Codes
   
 - ~~Working Shuffle Button~~ ✅
