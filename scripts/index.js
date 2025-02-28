@@ -121,7 +121,7 @@ class GameDataLoader {
     async loadGameFromCode(event) {
         event.preventDefault();
 
-        let code = document.getElementById("game-code");
+        let code = document.getElementById("game-code").value;
 
         this.queryBackend(code);
     }
