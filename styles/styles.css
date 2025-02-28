@@ -53,10 +53,31 @@ footer a, footer a:hover, footer a:visited {
     align-items: center;
 }
 
-#button-container {
+#button-container, #load-from-db-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1em;
+}
+
+#new-feature-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#new-feature-sign{
+    border-radius: 15px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #f9df6d;
+    margin: 0;
+    width: 15%;
+    padding: 1em;
+
 }
 
 #button-grid-container {
@@ -64,6 +85,22 @@ footer a, footer a:hover, footer a:visited {
     grid-template-columns: repeat(3, 175px);
     grid-template-rows: 1fr;
     gap: 20px;
+}
+
+#load-from-db-container form label {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+}
+
+#load-from-db-container form #game-code  {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    padding: 7px 20px;
+    text-transform: uppercase;
+    width: 6em;
 }
 
 #landing-page-container header .title{

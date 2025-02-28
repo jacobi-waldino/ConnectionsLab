@@ -1,5 +1,5 @@
 const path = require('path');
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 const express = require('express');
 console.log(__dirname);
 require('dotenv').config();
@@ -19,23 +19,24 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
-pool.query('select * from penisopia', (err, results) => {
-    if (err) {
-      console.error('Error executing query:', err.stack);
-      return;
+// Get games from code
+app.get("/getgame/:code", async (req, res) => {
+    try {
+        const result = await pool.query("SELECT * FROM games WHERE code = ?", [req.params.code]);
+        res.json(result);
+    } catch (err) {
+        console.error("Database query error:", err);
+        res.status(500).send("Database query failed");
     }
-    console.log('Results:', results);
 });
 
 // Route for the root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-
-
+    res.sendFile(path.join(__dirname, 'index.html'));
 
 });
 
 // Start the server
 app.listen(3000, () => {
-  console.log('Server running at http://localhost:3000/');
+    console.log('Server running at http://localhost:3000/');
 });

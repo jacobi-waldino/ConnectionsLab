@@ -17,10 +17,12 @@ class GameDataLoader {
         const selectFileButton = document.getElementById('select-file-button');
         const loadButton = document.getElementById('load-button');
         const playDemoButton = document.getElementById('play-demo-button');
+        const loadFromDBButton = document.getElementById('load-from-db');
 
         selectFileButton?.addEventListener('click', () => loadButton.click());
         loadButton?.addEventListener('change', (event) => this.handleFileSelection(event));
         playDemoButton?.addEventListener('click', () => this.loadRandomDemoGame());
+        loadFromDBButton?.addEventListener('click', (event) => this.loadGameFromCode(event));
     }
 
     validateCSVFormat(rows) {
@@ -38,6 +40,19 @@ class GameDataLoader {
             }
         }
         
+        return fields;
+    }
+
+    parseSQLToFields(data) {
+        const fields = {};
+        for (let i = 0; i < CONFIG.REQUIRED_ROWS; i++) {
+            fields[`group${i + 1}`] = data[0][0][`g${i + 1}0`];
+            for (let j = 1; j < CONFIG.REQUIRED_COLUMNS; j++) {
+                fields[`item${j}_${i + 1}`] = data[0][0][`g${i + 1}${j}`];
+            }
+        }
+        
+        console.table(fields);
         return fields;
     }
 
@@ -99,6 +114,25 @@ class GameDataLoader {
             console.error('Error loading the CSV file:', error);
             alert('Failed to load demo game');
         }
+    }
+
+    async loadGameFromCode(event) {
+        event.preventDefault();
+
+        let code = document.getElementById("game-code").value.toUpperCase();;
+
+        this.queryBackend(code);
+    }
+
+    queryBackend(code) {
+        fetch(`/getgame/${code}`)
+        .then(response => response.json())
+        .then(data => {
+            const fields = this.parseSQLToFields(data);
+            this.saveToLocalStorage(fields);
+            this.redirectToPlayPage();
+        })
+        .catch(error => alert(`${code} is not a valid game code.`));
     }
 }
 

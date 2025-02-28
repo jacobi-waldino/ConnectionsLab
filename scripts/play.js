@@ -104,10 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
     group4Name = localStorage.getItem('group4');
 
     // Log the items in each group as reference
-    // console.log('Group 1 Items:', group1Items);
-    // console.log('Group 2 Items:', group2Items);
-    // console.log('Group 3 Items:', group3Items);
-    // console.log('Group 4 Items:', group4Items);
+    console.log('Group 1 Items:', group1Items);
+    console.log('Group 2 Items:', group2Items);
+    console.log('Group 3 Items:', group3Items);
+    console.log('Group 4 Items:', group4Items);
 
     // Initialize the button states with all buttons initially not toggled
     document.querySelectorAll('.item-button').forEach(button => {
