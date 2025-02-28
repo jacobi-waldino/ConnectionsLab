@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(express.static(__dirname));
+app.use(express.static(`${__dirname}`));
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
