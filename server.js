@@ -1,6 +1,7 @@
 const path = require('path');
 const mysql = require('mysql2/promise');
 const express = require('express');
+const serverless = require('serverless-http');
 console.log(__dirname);
 require('dotenv').config();
 
@@ -79,3 +80,5 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
     console.log('Server running at http://localhost:3000/');
 });
+
+module.exports.handler = serverless(app);
