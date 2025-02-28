@@ -32,19 +32,23 @@ const pool = mysql.createPool({
 
 // Get games from code
 app.get("/getgame/:code", async (req, res) => {
+    const connection = await pool.getConnection();
     try {
-        const result = await pool.query("SELECT * FROM games WHERE code = ?", [req.params.code]);
+        const result = await connection.query("SELECT * FROM games WHERE code = ?", [req.params.code]);
         res.json(result);
     } catch (err) {
         console.error("Could not fetch game:", err);
         res.status(500).send("Database query failed");
+    } finally {
+        connection.release();
     }
 });
 
 // save games
 app.get("/savegame/:code/:g10/:g11/:g12/:g13/:g14/:g20/:g21/:g22/:g23/:g24/:g30/:g31/:g32/:g33/:g34/:g40/:g41/:g42/:g43/:g44", async (req, res) => {
+    const connection = await pool.getConnection();
     try {
-        await pool.query("INSERT INTO games VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        await connection.query("INSERT INTO games VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
             req.params.code, req.params.g10, req.params.g11, req.params.g12, req.params.g13, req.params.g14,
             req.params.g20, req.params.g21, req.params.g22, req.params.g23, req.params.g24,
@@ -57,16 +61,21 @@ app.get("/savegame/:code/:g10/:g11/:g12/:g13/:g14/:g20/:g21/:g22/:g23/:g24/:g30/
     } catch (err) {
         console.error("Could not save game to database:", err);
         res.status(500).send("Database query failed");
+    } finally {
+        connection.release();
     }
 });
 
 app.get("/getcodes/", async (req, res) => {
+    const connection = await pool.getConnection();
     try {
         const result = await pool.query("SELECT code FROM games");
         res.json(result);
     } catch (err) {
         console.error("Could not fetch code:", err);
         res.status(500).send("Database query failed");
+    } finally {
+        connection.release();
     }
 });
 
@@ -76,9 +85,9 @@ app.get('/', (req, res) => {
 
 });
 
-// Start the server
-app.listen(3000, () => {
-    console.log('Server running at http://localhost:3000/');
-});
+// // Start the server
+// app.listen(3000, () => {
+//     console.log('Server running at http://localhost:3000/');
+// });
 
 module.exports.handler = serverless(app);
