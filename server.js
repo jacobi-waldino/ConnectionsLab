@@ -82,7 +82,6 @@ app.get("/getcodes/", async (req, res) => {
 // Route for the root URL
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
-
 });
 
 // // Start the server
@@ -90,4 +89,4 @@ app.get('/', (req, res) => {
 //     console.log('Server running at http://localhost:3000/');
 // });
 
-module.exports.handler = serverless(app);
+module.exports = serverless(app);
