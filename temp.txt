@@ -1,0 +1,26 @@
+CREATE TABLE games (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    code VARCHAR(255),
+    g10 VARCHAR(255),
+    g11 VARCHAR(255),
+    g12 VARCHAR(255),
+    g13 VARCHAR(255),
+    g14 VARCHAR(255),
+    g20 VARCHAR(255),
+    g21 VARCHAR(255),
+    g22 VARCHAR(255),
+    g23 VARCHAR(255),
+    g24 VARCHAR(255),
+    g30 VARCHAR(255),
+    g31 VARCHAR(255),
+    g32 VARCHAR(255),
+    g33 VARCHAR(255),
+    g34 VARCHAR(255),
+    g40 VARCHAR(255),
+    g41 VARCHAR(255),
+    g42 VARCHAR(255),
+    g43 VARCHAR(255),
+    g44 VARCHAR(255)
+);
+
+insert into games ()
