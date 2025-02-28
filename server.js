@@ -19,6 +19,16 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
+(async () => {
+    try {
+        const connection = await pool.getConnection();
+        console.log('Successfully connected to the database.');
+        connection.release();
+    } catch (error) {
+        console.error('Database connection failed:', error.message);
+    }
+})();
+
 // Get games from code
 app.get("/getgame/:code", async (req, res) => {
     try {
