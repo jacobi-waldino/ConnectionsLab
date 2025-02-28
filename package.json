@@ -1,0 +1,26 @@
+{
+  "name": "connectionslab",
+  "version": "1.0.0",
+  "description": "## Overview",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobi-waldino/ConnectionsLab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacobi-waldino/ConnectionsLab/issues"
+  },
+  "homepage": "https://github.com/jacobi-waldino/ConnectionsLab#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0"
+  }
+}
