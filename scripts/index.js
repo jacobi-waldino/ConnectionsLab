@@ -48,7 +48,7 @@ class GameDataLoader {
         for (let i = 0; i < CONFIG.REQUIRED_ROWS; i++) {
             fields[`group${i + 1}`] = data[0][0][`g${i + 1}0`];
             for (let j = 1; j < CONFIG.REQUIRED_COLUMNS; j++) {
-                fields[`item${j}_${i + 1}`] = data[0][0][`g${i + 1}${j}`];
+                fields[`item${i + 1}_${j}`] = data[0][0][`g${i + 1}${j}`];
             }
         }
         
@@ -57,6 +57,8 @@ class GameDataLoader {
     }
 
     saveToLocalStorage(fields) {
+        localStorage.clear();
+        
         Object.entries(fields).forEach(([key, value]) => {
             localStorage.setItem(key, value);
         });
