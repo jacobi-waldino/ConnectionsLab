@@ -92,14 +92,12 @@ footer a, footer a:hover, footer a:visited {
     font-size: 1rem;
     font-weight: bold;
     text-transform: uppercase;
-    
 }
 
 #load-from-db-container form #game-code  {
     font-family: Arial, sans-serif;
     font-size: 1rem;
     padding: 7px 20px;
-    text-transform: uppercase;
     width: 6em;
 }
 
@@ -229,6 +227,10 @@ footer a, footer a:hover, footer a:visited {
 
 input[type="text"] {
     text-transform: uppercase;
+}
+
+#game-code {
+    text-transform: none;
 }
 
 .group-grid-container > input::placeholder{
@@ -379,6 +381,14 @@ input[type="text"] {
 #github-link {
     text-align: center;
 }
+
+#code-display {
+    margin-top: 3em;
+    text-align: center;
+    font-family: Arial;
+    font-weight: bold;
+}
+
 
 @media screen and (max-width: 768px) {
     /* Landing page adjustments */
