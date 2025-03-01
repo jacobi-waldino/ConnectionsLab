@@ -22,7 +22,7 @@ Give it a try with `aJx3Z21T`
 
 - ~~Game Sharing via Codes~~ ✅
   
-- ~~Working Shuffle Button~~
+- ~~Working Shuffle Button~~ ✅
 
 - ~~(Better) Mobile Device Support~~ ✅
 
