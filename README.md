@@ -1,4 +1,4 @@
-# Connections Lab
+# Connections Lab 🧩🧪
 
 ## Overview
 
