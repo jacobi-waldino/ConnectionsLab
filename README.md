@@ -28,3 +28,16 @@ Give it a try with `aJx3Z21T`
 
 - ~~Playable Example Games~~ ✅
 
+## Tech Stack
+
+*This part will only matter to you if you are part of a hiring team...*
+
+- HTML/CSS
+
+- Javascript
+
+- ExpressJS
+
+- MySQL
+
+*...that being said, if you ARE part of a hiring team, thank you so much for stopping by and have a wonderful day! (and please hire me)*
