@@ -1,12 +1,15 @@
 const path = require('path');
 const mysql = require('mysql2/promise');
 const express = require('express');
+const favicon = require('serve-favicon');
 console.log(__dirname);
 require('dotenv').config();
 
 const app = express();
 
 app.use(express.static(`${__dirname}`));
+app.use(favicon(path.join(__dirname, 'images', 'favicon.ico')));
+
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
