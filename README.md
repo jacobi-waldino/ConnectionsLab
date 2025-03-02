@@ -2,25 +2,27 @@
 
 ## Overview
 
-Connections Lab is a clone of The New York Times's game [Connections](https://www.nytimes.com/games/connections) that that allows players to make and play custom games, and share them with .csv files.
+Connections Lab is a clone of The New York Times's game [Connections](https://www.nytimes.com/games/connections) that that allows players to make and play custom games, and share them with .csv files or codes.
 
 Play it [here](https://connectionslab.xyz/)!
 
-## Update (26/2/2025)
+## Update (28/2/2025)
 
-Custom Domain! 🎉🎉🎉
+FULLY IMPLEMENTED BACKEND!
 
-https://connectionslab.xyz/
+You can now share games with 8 character codes around the world! 
 
-This is step one of implementing the feature of game sharing without uploading .csv files, as it will be hosted somewhere other than GitHub pages.
+Give it a try with `aJx3Z21T`
 
 ## Planned Features
 
-- Make an icon
+- Game Sharing via URLs
 
-- Game Sharing via URLs/Codes
+- ~~Make an icon~~ ✅
+
+- ~~Game Sharing via Codes~~ ✅
   
-- ~~Working Shuffle Button~~ ✅
+- ~~Working Shuffle Button~~
 
 - ~~(Better) Mobile Device Support~~ ✅
 

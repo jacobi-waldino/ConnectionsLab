@@ -178,7 +178,17 @@ shareButton.addEventListener('click', function () {
             return;
         }
 
-        fetch(`/savegame/${code}/${fields['group1']}/${fields['item1_1']}/${fields['item1_2']}/${fields['item1_3']}/${fields['item1_4']}/${fields['group2']}/${fields['item2_1']}/${fields['item2_2']}/${fields['item2_3']}/${fields['item2_4']}/${fields['group3']}/${fields['item3_1']}/${fields['item3_2']}/${fields['item3_3']}/${fields['item3_4']}/${fields['group4']}/${fields['item4_1']}/${fields['item4_2']}/${fields['item4_3']}/${fields['item4_4']}`);
+        fetch(`/savegame/${code}/${fields['group1']}/${fields['item1_1']}/${fields['item1_2']}/${fields['item1_3']}/${fields['item1_4']}/${fields['group2']}/${fields['item2_1']}/${fields['item2_2']}/${fields['item2_3']}/${fields['item2_4']}/${fields['group3']}/${fields['item3_1']}/${fields['item3_2']}/${fields['item3_3']}/${fields['item3_4']}/${fields['group4']}/${fields['item4_1']}/${fields['item4_2']}/${fields['item4_3']}/${fields['item4_4']}`)
+        .then(res => {
+            if(!res.ok) {
+                alert('Stop trying to bypass the validation, Xander');
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while saving the game.');
+        });
 
         console.log('Generated unique code:', code);
 
